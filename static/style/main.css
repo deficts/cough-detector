@@ -3,3 +3,9 @@
 .mono{
     font-family: 'Roboto Mono', monospace !important;
 }
+
+.algoritmos {
+    margin-top: 20px;
+    padding-left: 50%;
+    margin:20px;
+}
