@@ -17,33 +17,33 @@
                 <h1>markough</h1>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col">
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="tos-file">
-                        <label class="custom-file-label" for="tos-file">Elige un archivo</label>
+        <form method="POST" action="/" enctype="multipart/form-data">
+            <div class="row mt-2">
+                <div class="col">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="tos-file" name="file">
+                            <label class="custom-file-label" for="tos-file">Elige un archivo</label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container col text-center mt-4">
-            <form method="POST" action="/">
+            <div class="container col text-center mt-4">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="algs" id="alg1" value="alg1" checked>
                     <label class="form-check-label" >
-                      Algoritmo 1
+                    Algoritmo 1
                     </label>
-                  </div>
-                  <div class="form-check">
+                </div>
+                <div class="form-check">
                     <input class="form-check-input" type="radio" name="algs" id="alg2" value="alg2">
                     <label class="form-check-label">
                         Algoritmo 2
                     </label>
-                  </div>
-                  <button class="btn btn-outline-secondary mt-4" type="button" id="test-button">Testear</button>
-            </form>
-        </div>
+                </div>
+                <button class="btn btn-outline-secondary mt-4" type="submit" id="test-button">Testear</button>
+            </div>
+        </form>
     </div>
 </body>
 
