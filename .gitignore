@@ -1,4 +1,4 @@
 .DS_Store
 /static/audio
-/static/uploads
+/static/uploads/*
 __pycache__

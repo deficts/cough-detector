@@ -1,4 +1,3 @@
-import soundfile
 from python_speech_features import mfcc, logfbank
 from scipy.io import wavfile
 import numpy as np
@@ -26,7 +25,6 @@ class HMMTrainer(object):
     self.cov_type = cov_type
     self.n_iter = n_iter
     self.models = []
-    self.labels = []
     if self.model_name == 'GaussianHMM':
       self.model = hmm.GaussianHMM(n_components=self.n_components, covariance_type=self.cov_type,n_iter=self.n_iter)
     else:
@@ -73,8 +71,39 @@ def main():
       print('Beginning training')
       hmm_trainer = HMMTrainer(n_components=2)
       hmm_trainer.train(X)
-      hmm_trainer.labels.append(label)
       hmm_models.append((hmm_trainer, label))
       hmm_trainer = None
       print("Training finished")
+  # input_folder = 'static/audio/'
+  # real_labels = []
+  # pred_labels = []
+  # for dirname in os.listdir(input_folder):
+  #     subfolder = os.path.join(input_folder, dirname)
+  #     if not os.path.isdir(subfolder):
+  #         print("Subfolder doesn't exist: ", subfolder)
+  #         continue
+  #     # Extract the label
+  #     label_real = subfolder[subfolder.rfind('/') + 1:]
+  #
+  #     for filename in [x for x in os.listdir(subfolder) if x.endswith('.wav')]:
+  #         real_labels.append(label_real)
+  #         filepath = os.path.join(subfolder, filename)
+  #         sampling_freq, audio = wavfile.read(filepath)
+  #         mfcc_features = mfcc(audio, sampling_freq, nfft=2048)
+  #         max_score = -9999999999999999999
+  #         output_label = None
+  #         for item in hmm_models:
+  #             hmm_model, label = item
+  #             score = hmm_model.get_score(mfcc_features)
+  #             if score > max_score:
+  #                 max_score = score
+  #                 output_label = label
+  #         pred_labels.append(output_label)
+  #
+  # print("real ", real_labels)
+  # print("pred ", pred_labels)
+  #
+  # cm = confusion_matrix(real_labels, pred_labels)
+  # print(cm)
+  # print("Accuracy: ", (cm[0,0]+cm[1,1])/len(real_labels))
   return hmm_models
