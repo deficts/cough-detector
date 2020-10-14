@@ -17,6 +17,17 @@
                 <h1>markough</h1>
             </div>
         </div>
+
+        <div>
+            <canvas id="analyser" style="width:100%;height:300px;background-color: gray" width="1024" height="500"></canvas>
+            <p>
+                <button id="init" class="btn btn-info" onclick="unpause()">Start listening</button>
+                <button id="start" class="btn btn-success" onclick="startRecording()" disabled>Start</button>
+                <button id="stop" class="btn btn-danger" onclick="stopRecording()" disabled>Stop</button>
+            </p>
+            <textarea class="form-control" id="output" style="width: 100%;height: 10vh" readonly></textarea>
+        </div>
+
         <form method="POST" action="/" enctype="multipart/form-data">
             <div class="row mt-2">
                 <div class="col">
@@ -44,7 +55,20 @@
                 <button class="btn btn-outline-secondary mt-4" type="submit" id="test-button">Testear</button>
             </div>
         </form>
+
+        <div class="row mt-5">
+            <div class="col text-center">
+                {% if Cough=="cough" %}
+                <h4 class="text-success">Cough</h4>
+                {% elif Cough=="no_cough" %}
+                <h4 class="text-danger">Not Cough</h4>
+                {% endif %}
+        </div>
     </div>
+
+    <script src="../static/js/recorderWorker.js"></script>
+    <script src="../static/js/recorder.js"></script>
+    <script src="../static/js/main.js"></script>
 </body>
 
 </html>
