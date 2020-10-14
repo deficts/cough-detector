@@ -30,15 +30,16 @@ def index():
     if request.method == 'POST':
         #Aqui se obtiene el path del archivo
         path = None
-        if(wavRecording is not None):
-            path = wavRecording
+        f = request.files['file']
+
+        if f.filename != '':
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
+            path = UPLOAD_FOLDER+f.filename
+        elif(wavRecording is not None):
+            path = wavRecording  
         else:
-            f = request.files['file']
-            if f.filename != '':
-                f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
-                path = UPLOAD_FOLDER+f.filename
-            else:
-                return 
+            return "Error while reading inputs"
+            
 
         algs = request.form.get('algs')
         
